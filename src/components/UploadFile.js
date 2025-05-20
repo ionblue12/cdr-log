@@ -1,25 +1,41 @@
-export default function UploadFile({results, element}){
+import './UploadFile.css';
+export default function UploadFile({results}){
+
+    const fixDate=(date)=>{
+        const fixed = date.split('/');
+        const newDate = fixed[1]+'/'+fixed[2]+'/'+fixed[0];
+        return newDate;
+    }
 
     return(
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Extension</th>
-                <th>Name</th>
-                <th>Destination</th>
-                <th>Duration</th>
-                <th>Terminated by</th>
-            </tr>
-            {results? results.filter(result=>element === result.name || element === result.source).map((person)=><tr key={person.id}>
-                <th>{person.date}</th>
-                <th>{person.time}</th>
-                <th>{person.source}</th>
-                <th>{person.name}</th>
-                <th>{person.dest}</th>
-                <th>{person.duration}</th>
-                <th>{person.terminated}</th>
-            </tr>) : (<h1>no result</h1>)}
-        </table>
+        <div>
+            {results.length>0? (
+                <table className="Table-set">
+                    <thead className='Thead-set'>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Extension</th>
+                            <th>Name</th>
+                            <th>Destination</th>
+                            <th>Duration</th>
+                            <th>Terminated-by</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        {results.map(person=>
+                        
+                            <tr key={person.id}>
+                                <td>{fixDate(person.date)}</td>
+                                <td>{person.time}</td>
+                                <td>{person.source}</td>
+                                <td>{person.name}</td>
+                                <td>{person.dest}</td>
+                                <td>{person.duration}</td>
+                                <td>{person.terminated}</td>
+                         </tr>)}
+                </tbody>
+            </table>) : (<div>no results found</div>)}
+        </div>
     );
 }
