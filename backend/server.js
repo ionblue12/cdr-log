@@ -10,7 +10,7 @@ app.use(cors());
 
 app.get('/api/history', (req, res, next)=>{
     results=[];
-    fs.readFile("J:/Python/cdr-3cx/src/cdr.log", 'utf-8', (err,data) =>{
+    fs.readFile("file/path/file.log", 'utf-8', (err,data) =>{
         if(err){
             console.log("Error reading the file", err);
             return;
@@ -34,6 +34,6 @@ app.get('/api/history', (req, res, next)=>{
     
 });
 
-app.listen(PORT, ()=>{
+app.listen(PORT, '192.xx.xx.xx', ()=>{
     console.log(`The server is listening on port ${PORT}`);
 })

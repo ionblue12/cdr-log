@@ -13,7 +13,7 @@ function App() {
 
   console.log('date', searchDate); 
   const getData = async(element, orgDate)=>{
-    const res = await fetch('http://localhost:5000/api/history');
+    const res = await fetch('http://192.xx.xx.xx:5000/api/history');
     const data = await res.json();
     
     const filteredData = data.filter(result=>element === result.name && new Date(orgDate) <= new Date (result.date) || element === result.source && new Date(orgDate) <= new Date (result.date))
